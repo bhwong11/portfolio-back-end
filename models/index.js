@@ -11,6 +11,6 @@ const configOptions = {
   .catch((err)=>console.log(`MongoDB connection Error: ${err}`))
 
   module.exports = {
-      Game:require("./Project"),
+      Project:require("./Project"),
       User:require("./User")
   }

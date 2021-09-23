@@ -4,6 +4,9 @@ const app = express();
 const cors = require('cors')
 PORT = 4000
 
+//internal
+const routes = require('./routes');
+
 //middleware
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -29,7 +32,7 @@ app.get('/jsontest',async (req,res)=>{
 })
 
 app.use("/api/users",routes.user);
-app.use("/api/v1/auth", routes.auth);
+app.use("/api/auth", routes.auth);
 //app.use("/api/projects",routes.projects);
 
 app.listen(PORT,function(){

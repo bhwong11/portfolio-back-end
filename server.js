@@ -5,6 +5,10 @@ const cors = require('cors')
 PORT = 4000
 
 //middleware
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
+//cors body parser
 app.use(cors())
 
 app.get('/',async (req,res)=>{
@@ -24,8 +28,8 @@ app.get('/jsontest',async (req,res)=>{
     
 })
 
-//app.use("/api/users",routes.user);
-//app.use("/api/v1/auth", routes.auth);
+app.use("/api/users",routes.user);
+app.use("/api/v1/auth", routes.auth);
 //app.use("/api/projects",routes.projects);
 
 app.listen(PORT,function(){

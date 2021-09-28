@@ -34,6 +34,7 @@ app.get('/jsontest',async (req,res)=>{
 app.use("/api/users",routes.user);
 app.use("/api/auth", routes.auth);
 app.use("/api/projects",routes.project);
+app.use("/api/mail",routes.mail)
 
 app.listen(PORT,function(){
     console.log(`Listening on port ${PORT}`)

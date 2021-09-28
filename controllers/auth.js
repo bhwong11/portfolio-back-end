@@ -1,6 +1,7 @@
 const db = require('../models');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const register = async(req,res)=>{
     try{
@@ -50,7 +51,7 @@ const login = async(req,res)=>{
 
         const isMatch = await bcrypt.compare(req.body.password, foundUser.password)
         if(isMatch){
-            const token = jwt.sign({ _id:foundUser._id }, "supersecretwaffles",{
+            const token = jwt.sign({ _id:foundUser._id }, process.env.JWTSECRECT,{
                 expiresIn:'1d',
             });
 

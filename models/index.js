@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const connectionString = process.env.MONGO_URI || 'mongodb://localhost:27017/portfolio'
+//const connectionString = process.env.MONGO_URI || 'mongodb://localhost:27017/portfolio'
+const connectionString = process.env.MONGO_URI
 const configOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true,

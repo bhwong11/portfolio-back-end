@@ -40,6 +40,7 @@ const login = async(req,res)=>{
         const foundUser = await db.User.findOne({email: req.body.email}).select(
             '+password'
         )
+
         if(!foundUser){
             return res.status(400).json({
                 status:400,
@@ -49,7 +50,7 @@ const login = async(req,res)=>{
 
         const isMatch = await bcrypt.compare(req.body.password, foundUser.password)
         if(isMatch){
-            const token = jwt.sign({_id:foundUser._id}, "secretforjwt",{
+            const token = jwt.sign({ _id:foundUser._id }, "supersecretwaffles",{
                 expiresIn:'1d',
             });
 
@@ -67,7 +68,7 @@ const login = async(req,res)=>{
     }catch(error){
         return res.status(500).json({
             status:500,
-            message: 'something went wrong'
+            message: `something went wrong ${error}`
         })
     }
 }

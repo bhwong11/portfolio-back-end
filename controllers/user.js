@@ -1,19 +1,21 @@
 const {User} = require('../models');
 const bcrypt = require('bcryptjs');
+const jwt = require("jsonwebtoken");
 
 const show = async (req,res,next)=>{
     try{
-        const foundUser = await User.findById(req.params.id)
-        if(!foundUser){
-            res.status(400).json({
-                status:400,
-                message:"Unable to find user"
-            })
+        const bearerHeader = req.headers.authorization;
+        if (typeof bearerHeader === "undefined") {
+            return res.sendStatus(403);
         }
+        const token = bearerHeader.split(" ")[1];
+        const payload = await jwt.verify(token, "supersecretwaffles");
+        req.userId = payload._id;
+        const foundUser = await User.findById(req.userId)
         return res.status(200).json({
-            status:200,
+            status: 200,
             message:"success",
-            data:foundUser
+            data: foundUser,
         })
     }catch(error){
         console.log(error)

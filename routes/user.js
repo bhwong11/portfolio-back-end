@@ -4,7 +4,7 @@ const ctrl = require('../controllers')
 const authRequired = require('../middleware/authRequired')
 
 //routes
-router.get('/:id',ctrl.user.show)
+router.get('/',ctrl.user.show)
 router.put('/:id',ctrl.user.update)
 router.delete('/:id',ctrl.user.destroy)
 

@@ -38,7 +38,7 @@ const send = async(req,res)=>{
             console.log('Email sent: ' + info.response);
             return res.status(200).json({
                 status:200,
-                message:"sucessful mail sent"
+                message:"successful mail sent"
             })
         }
         });
